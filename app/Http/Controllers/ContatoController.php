@@ -17,8 +17,11 @@ class ContatoController extends Controller
     public function index()
     {
         $contatos = Contato::with('categoria')->orderBy('nome')->get();
+        //$contatos = Contato::orderBy('nome')->get();
+        $contatos = Contato::orderBy('nome')->paginate(7);
         
         return view('index',['contatos' => $contatos]);
+        //return view('index',compact('contatos'));
     }
 
     /**
